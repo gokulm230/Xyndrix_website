@@ -15,6 +15,41 @@ export default function Header() {
   const productsRef = useRef(null);
   const solutionsRef = useRef(null);
   const careersRef = useRef(null);
+  const companyCloseTimeout = useRef(null);
+  const productsCloseTimeout = useRef(null);
+  const solutionsCloseTimeout = useRef(null);
+  const careersCloseTimeout = useRef(null);
+
+  const clearCloseTimeout = (name) => {
+    if (name === 'company' && companyCloseTimeout.current) { clearTimeout(companyCloseTimeout.current); companyCloseTimeout.current = null; }
+    if (name === 'products' && productsCloseTimeout.current) { clearTimeout(productsCloseTimeout.current); productsCloseTimeout.current = null; }
+    if (name === 'solutions' && solutionsCloseTimeout.current) { clearTimeout(solutionsCloseTimeout.current); solutionsCloseTimeout.current = null; }
+    if (name === 'careers' && careersCloseTimeout.current) { clearTimeout(careersCloseTimeout.current); careersCloseTimeout.current = null; }
+  };
+
+  const openDropdown = (name) => {
+    // clear any close timer and open the requested dropdown while closing others
+    clearCloseTimeout(name);
+    if (name === 'company') { setCompanyDropdownOpen(true); setProductsDropdownOpen(false); setSolutionsDropdownOpen(false); setCareersDropdownOpen(false); }
+    if (name === 'products') { setProductsDropdownOpen(true); setCompanyDropdownOpen(false); setSolutionsDropdownOpen(false); setCareersDropdownOpen(false); }
+    if (name === 'solutions') { setSolutionsDropdownOpen(true); setCompanyDropdownOpen(false); setProductsDropdownOpen(false); setCareersDropdownOpen(false); }
+    if (name === 'careers') { setCareersDropdownOpen(true); setCompanyDropdownOpen(false); setProductsDropdownOpen(false); setSolutionsDropdownOpen(false); }
+  };
+
+  const closeDropdownDelayed = (name, delay = 150) => {
+    // start a short timeout to close; cancelled if mouse enters menu
+    clearCloseTimeout(name);
+    const id = setTimeout(() => {
+      if (name === 'company') setCompanyDropdownOpen(false);
+      if (name === 'products') setProductsDropdownOpen(false);
+      if (name === 'solutions') setSolutionsDropdownOpen(false);
+      if (name === 'careers') setCareersDropdownOpen(false);
+    }, delay);
+    if (name === 'company') companyCloseTimeout.current = id;
+    if (name === 'products') productsCloseTimeout.current = id;
+    if (name === 'solutions') solutionsCloseTimeout.current = id;
+    if (name === 'careers') careersCloseTimeout.current = id;
+  };
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -48,7 +83,7 @@ export default function Header() {
   return (
     <header className="font-sans">
       {/* Navigation Bar */}
-      <nav className="flex items-center justify-center p-4 lg:px-16 shadow-sm bg-white sticky top-0 z-50">
+  <nav className="flex items-center justify-center p-4 lg:px-16 shadow-sm bg-white sticky top-0 z-50">
         <div className="flex items-center mr-8">
           <Link href="/Home" className="flex items-center">
             <Image 
@@ -67,16 +102,10 @@ export default function Header() {
         <div className="hidden md:flex space-x-6">
           
           {/* Company Dropdown - Hover */}
-          <div 
-            className="relative" 
+          <div
             ref={companyRef}
-            onMouseEnter={() => {
-              setCompanyDropdownOpen(true);
-              setProductsDropdownOpen(false);
-              setSolutionsDropdownOpen(false);
-              setCareersDropdownOpen(false);
-            }}
-            onMouseLeave={() => setCompanyDropdownOpen(false)}
+            onMouseEnter={() => openDropdown('company')}
+            onMouseLeave={() => closeDropdownDelayed('company')}
           >
             <button className="flex items-center font-bold text-gray-700 hover:text-blue-500 transition-colors">
               Company
@@ -90,68 +119,62 @@ export default function Header() {
               </svg>
             </button>
             
-            {/* Company Dropdown Menu */}
+            {/* Company Mega Menu */}
             {companyDropdownOpen && (
-              <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-lg rounded-lg overflow-hidden z-50 border border-gray-200">
-                <div className="py-2">
-                  <Link 
-                    href="/About" 
-                    className="flex items-center px-4 py-3 hover:bg-gray-50 group"
-                  >
-                    <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 mr-3 group-hover:bg-blue-100">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
+              <div
+                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[960px] bg-white shadow-xl rounded-2xl z-50 border border-gray-200"
+                onMouseEnter={() => clearCloseTimeout('company')}
+                onMouseLeave={() => closeDropdownDelayed('company')}
+              >
+                <div className="p-6">
+                  <div className="grid grid-cols-3 gap-6">
+                    <div>
+                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">Company</h4>
+                      <ul className="space-y-2">
+                        <li>
+                          <Link href="/About" className="block text-sm text-gray-800 hover:text-blue-500">About Xyndrix</Link>
+                        </li>
+                        <li>
+                          <Link href="/Team" className="block text-sm text-gray-800 hover:text-blue-500">Team</Link>
+                        </li>
+                        <li>
+                          <Link href="/contact" className="block text-sm text-gray-800 hover:text-blue-500">Contact Us</Link>
+                        </li>
+                      </ul>
                     </div>
                     <div>
-                      <p className="font-bold text-gray-800">About Xyndrix</p>
-                      <p className="text-xs text-gray-500">Learn about our company</p>
-                    </div>
-                  </Link>
-                  <Link 
-                    href="/Team" 
-                    className="flex items-center px-4 py-3 hover:bg-gray-50 group"
-                  >
-                    <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 mr-3 group-hover:bg-blue-100">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                      </svg>
+                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">Resources</h4>
+                      <ul className="space-y-2">
+                        <li><a className="block text-sm text-gray-800 hover:text-blue-500">Blog</a></li>
+                        <li><a className="block text-sm text-gray-800 hover:text-blue-500">Case Studies</a></li>
+                        <li><a className="block text-sm text-gray-800 hover:text-blue-500">Docs</a></li>
+                      </ul>
                     </div>
                     <div>
-                      <p className="font-bold text-gray-800">Team</p>
-                      <p className="text-xs text-gray-500">Meet our talented team</p>
+                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">Company News</h4>
+                      <p className="text-sm text-gray-600">Latest updates, press releases and announcements from Xyndrix.</p>
                     </div>
-                  </Link>
-                  <Link 
-                    href="/contact" 
-                    className="flex items-center px-4 py-3 hover:bg-gray-50 group"
-                  >
-                    <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 mr-3 group-hover:bg-blue-100">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
+                  </div>
+
+                  <div className="mt-5">
+                    <div className="rounded-lg border border-gray-100 p-3 bg-gray-50 flex items-center gap-4">
+                      <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-blue-500">★</div>
+                      <div>
+                        <p className="text-sm font-bold text-gray-800">Careers at Xyndrix</p>
+                        <p className="text-xs text-gray-500">We're hiring — see open roles and benefits.</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-bold text-gray-800">Contact Us</p>
-                      <p className="text-xs text-gray-500">Get in touch with us</p>
-                    </div>
-                  </Link>
+                  </div>
                 </div>
               </div>
             )}
           </div>
           
           {/* Products Dropdown - Hover */}
-          <div 
-            className="relative" 
+          <div
             ref={productsRef}
-            onMouseEnter={() => {
-              setProductsDropdownOpen(true);
-              setCompanyDropdownOpen(false);
-              setSolutionsDropdownOpen(false);
-              setCareersDropdownOpen(false);
-            }}
-            onMouseLeave={() => setProductsDropdownOpen(false)}
+            onMouseEnter={() => openDropdown('products')}
+            onMouseLeave={() => closeDropdownDelayed('products')}
           >
             <button className="flex items-center font-bold text-gray-700 hover:text-blue-500 transition-colors">
               Products
@@ -165,54 +188,59 @@ export default function Header() {
               </svg>
             </button>
             
-            {/* Products Dropdown Menu */}
+            {/* Products Mega Menu */}
             {productsDropdownOpen && (
-              <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-lg rounded-lg overflow-hidden z-50 border border-gray-200">
-                <div className="py-2">
-                  <Link 
-                    href="/Products/cctv-pentester" 
-                    className="flex items-center px-4 py-3 hover:bg-gray-50 group"
-                  >
-                    <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 mr-3 group-hover:bg-blue-100">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
+              <div
+                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[960px] bg-white shadow-xl rounded-2xl z-50 border border-gray-200"
+                onMouseEnter={() => clearCloseTimeout('products')}
+                onMouseLeave={() => closeDropdownDelayed('products')}
+              >
+                <div className="p-6">
+                  <div className="grid grid-cols-3 gap-6">
+                    <div>
+                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">Products</h4>
+                      <ul className="space-y-2">
+                        <li>
+                          <Link href="/Products/cctv-pentester" className="block text-sm text-gray-800 hover:text-blue-500">CCTV Pentester</Link>
+                        </li>
+                        <li>
+                          <Link href="/Products/discord-application" className="block text-sm text-gray-800 hover:text-blue-500">Discord Application</Link>
+                        </li>
+                      </ul>
                     </div>
                     <div>
-                      <p className="font-bold text-gray-800">CCTV Pentester</p>
-                      <p className="text-xs text-gray-500">Open source security tool</p>
-                    </div>
-                  </Link>
-                  <Link 
-                    href="/Products/discord-application" 
-                    className="flex items-center px-4 py-3 hover:bg-gray-50 group"
-                  >
-                    <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 mr-3 group-hover:bg-blue-100">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                      </svg>
+                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">Integrations</h4>
+                      <ul className="space-y-2">
+                        <li><a className="block text-sm text-gray-800 hover:text-blue-500">Slack</a></li>
+                        <li><a className="block text-sm text-gray-800 hover:text-blue-500">Discord</a></li>
+                        <li><a className="block text-sm text-gray-800 hover:text-blue-500">API</a></li>
+                      </ul>
                     </div>
                     <div>
-                      <p className="font-bold text-gray-800">Discord Application</p>
-                      <p className="text-xs text-gray-500">Enhance your Discord experience</p>
+                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">Developer</h4>
+                      <p className="text-sm text-gray-600">SDKs, API docs and tools to build on Xyndrix products.</p>
                     </div>
-                  </Link>
+                  </div>
+
+                  <div className="mt-5">
+                    <div className="rounded-lg border border-gray-100 p-3 bg-gray-50 flex items-center gap-4">
+                      <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-blue-500">⇄</div>
+                      <div>
+                        <p className="text-sm font-bold text-gray-800">Try our SDK</p>
+                        <p className="text-xs text-gray-500">Start building integrations in minutes.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
           </div>
           
           {/* Solutions Dropdown - Hover */}
-          <div 
-            className="relative" 
+          <div
             ref={solutionsRef}
-            onMouseEnter={() => {
-              setSolutionsDropdownOpen(true);
-              setCompanyDropdownOpen(false);
-              setProductsDropdownOpen(false);
-              setCareersDropdownOpen(false);
-            }}
-            onMouseLeave={() => setSolutionsDropdownOpen(false)}
+            onMouseEnter={() => openDropdown('solutions')}
+            onMouseLeave={() => closeDropdownDelayed('solutions')}
           >
             <button className="flex items-center font-bold text-gray-700 hover:text-blue-500 transition-colors">
               Solutions
@@ -226,54 +254,71 @@ export default function Header() {
               </svg>
             </button>
             
-            {/* Solutions Dropdown Menu */}
+            {/* Solutions Mega Menu */}
             {solutionsDropdownOpen && (
-              <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-lg rounded-lg overflow-hidden z-50 border border-gray-200">
-                <div className="py-2">
-                  <Link 
-                    href="/Solutions/ai-solutions" 
-                    className="flex items-center px-4 py-3 hover:bg-gray-50 group"
-                  >
-                    <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 mr-3 group-hover:bg-blue-100">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                      </svg>
+              <div
+                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[960px] bg-white shadow-xl rounded-2xl z-50 border border-gray-200"
+                onMouseEnter={() => clearCloseTimeout('solutions')}
+                onMouseLeave={() => closeDropdownDelayed('solutions')}
+              >
+                <div className="p-6">
+                  <div className="grid grid-cols-4 gap-6">
+                    <div>
+                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">By use case</h4>
+                      <ul className="space-y-2 text-sm">
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Team collaboration</Link></li>
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Strategy and planning</Link></li>
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Service management</Link></li>
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Software development</Link></li>
+                      </ul>
                     </div>
                     <div>
-                      <p className="font-bold text-gray-800">AI Solutions</p>
-                      <p className="text-xs text-gray-500">Intelligent automation & insights</p>
-                    </div>
-                  </Link>
-                  <Link 
-                    href="/Solutions/cybersecurity" 
-                    className="flex items-center px-4 py-3 hover:bg-gray-50 group"
-                  >
-                    <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 mr-3 group-hover:bg-blue-100">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                      </svg>
+                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">By team</h4>
+                      <ul className="space-y-2 text-sm">
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Software</Link></li>
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Marketing</Link></li>
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">IT</Link></li>
+                      </ul>
                     </div>
                     <div>
-                      <p className="font-bold text-gray-800">Cybersecurity</p>
-                      <p className="text-xs text-gray-500">Protect your digital assets</p>
+                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">By size</h4>
+                      <ul className="space-y-2 text-sm">
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Enterprise</Link></li>
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Small Business</Link></li>
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Startup</Link></li>
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Non-profit</Link></li>
+                      </ul>
                     </div>
-                  </Link>
+                    <div>
+                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">By industry</h4>
+                      <ul className="space-y-2 text-sm">
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Retail</Link></li>
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Telecommunications</Link></li>
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Professional Services</Link></li>
+                        <li><Link href="#" className="text-gray-800 hover:text-blue-500">Government</Link></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="mt-5">
+                    <div className="rounded-lg border border-gray-100 p-3 bg-gray-50 flex items-center gap-4">
+                      <img src="/ai-web-dev-3d.svg" alt="Promo" className="w-10 h-10" />
+                      <div>
+                        <p className="text-sm font-bold text-gray-800">Rovo</p>
+                        <p className="text-xs text-gray-500">AI-powered apps — driven by your team's knowledge.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
           </div>
           
           {/* Careers Dropdown - Hover */}
-          <div 
-            className="relative" 
+          <div
             ref={careersRef}
-            onMouseEnter={() => {
-              setCareersDropdownOpen(true);
-              setCompanyDropdownOpen(false);
-              setProductsDropdownOpen(false);
-              setSolutionsDropdownOpen(false);
-            }}
-            onMouseLeave={() => setCareersDropdownOpen(false)}
+            onMouseEnter={() => openDropdown('careers')}
+            onMouseLeave={() => closeDropdownDelayed('careers')}
           >
             <button className="flex items-center font-bold text-gray-700 hover:text-blue-500 transition-colors">
               Careers
@@ -287,24 +332,27 @@ export default function Header() {
               </svg>
             </button>
             
-            {/* Careers Dropdown Menu */}
+            {/* Careers Mega Menu */}
             {careersDropdownOpen && (
-              <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-lg rounded-lg overflow-hidden z-50 border border-gray-200">
-                <div className="py-2">
-                  <Link 
-                    href="/Careers/openings" 
-                    className="flex items-center px-4 py-3 hover:bg-gray-50 group"
-                  >
-                    <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center text-blue-500 mr-3 group-hover:bg-blue-100">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
+              <div
+                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[960px] bg-white shadow-xl rounded-2xl z-50 border border-gray-200"
+                onMouseEnter={() => clearCloseTimeout('careers')}
+                onMouseLeave={() => closeDropdownDelayed('careers')}
+              >
+                <div className="p-6">
+                  <div className="grid grid-cols-2 gap-6">
+                    <div>
+                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">Open roles</h4>
+                      <ul className="space-y-2">
+                        <li><Link href="/Careers/openings" className="text-sm text-gray-800 hover:text-blue-500">Current Openings</Link></li>
+                        <li><a className="text-sm text-gray-800 hover:text-blue-500">Internships</a></li>
+                      </ul>
                     </div>
                     <div>
-                      <p className="font-bold text-gray-800">Current Openings</p>
-                      <p className="text-xs text-gray-500">Join our growing team</p>
+                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">Life at Xyndrix</h4>
+                      <p className="text-sm text-gray-600">Benefits, culture, and what it's like to work with us.</p>
                     </div>
-                  </Link>
+                  </div>
                 </div>
               </div>
             )}

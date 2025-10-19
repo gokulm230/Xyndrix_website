@@ -6,8 +6,8 @@ import MobileFloatingRobot from "./Components/ui/mobile-floating-robot";
 import "./globals.css";
 
 export const metadata = {
-  title: "Xyndrix Innovations | Innovating the Future of Software Technology",
-  description: "At Xyndrix Innovations, we empower businesses with cutting-edge technology solutions to thrive in the digital era.",
+  title: "Xyndrix | Innovating the Future of Software Technology",
+  description: "At Xyndrix, we empower businesses with cutting-edge technology solutions to thrive in the digital era.",
   icons: [
     { rel: 'icon', url: '/xyndrix.png' },
     { rel: 'apple-touch-icon', url: '/xyndrix.png' },

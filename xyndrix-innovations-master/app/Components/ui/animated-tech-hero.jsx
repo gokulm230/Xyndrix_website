@@ -203,7 +203,7 @@ const AnimatedTechHero = () => {
           </filter>
         </defs>
         
-        {/* Floating code/stat elements removed */}
+   
 
         {/* Computer/laptop */}
         <g transform="translate(400, 360)" filter="url(#shadow)">
@@ -230,8 +230,6 @@ const AnimatedTechHero = () => {
           <path d="M-120 65 L120 65 L150 110 L-150 110 Z" fill="#312e81" />
           <rect x="-150" y="110" width="300" height="10" rx="2" fill="#1e1b4b" />
         </g>
-        
-        
         
         
         
