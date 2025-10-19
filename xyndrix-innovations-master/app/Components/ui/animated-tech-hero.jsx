@@ -10,12 +10,7 @@ const AnimatedTechHero = () => {
     // Elements to animate
     if (!svgRef.current) return;
     
-    // Animation for floating code elements
-    const floatingCodes = svgRef.current.querySelectorAll('.floating-code');
-    floatingCodes.forEach((element, index) => {
-      // Apply different animation delays
-      element.style.animation = `float 4s ease-in-out ${index * 0.5}s infinite`;
-    });
+    // ...existing animations (floating-code elements removed)
 
     // Animation for robot parts
     const robotElements = svgRef.current.querySelectorAll('.robot-part');
@@ -118,10 +113,7 @@ const AnimatedTechHero = () => {
       onMouseLeave={() => setIsHovering(false)}
     >
       <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-15px); }
-        }
+        /* floating float animation removed (stats elements were removed) */
         
         @keyframes robotFloat {
           0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -211,22 +203,7 @@ const AnimatedTechHero = () => {
           </filter>
         </defs>
         
-        {/* Floating code elements */}
-        <g transform="translate(50, 100)" className="floating-code">
-          <rect x="0" y="0" width="120" height="20" rx="4" fill="#c7d2fe" />
-          <rect x="20" y="30" width="160" height="20" rx="4" fill="#a5b4fc" />
-          <rect x="40" y="60" width="100" height="20" rx="4" fill="#818cf8" />
-          <rect x="20" y="90" width="140" height="20" rx="4" fill="#6366f1" />
-          <rect x="0" y="120" width="180" height="20" rx="4" fill="#4f46e5" />
-        </g>
-        
-        <g transform="translate(600, 150)" className="floating-code">
-          <rect x="0" y="0" width="120" height="20" rx="4" fill="#ddd6fe" />
-          <rect x="-20" y="30" width="160" height="20" rx="4" fill="#c4b5fd" />
-          <rect x="-40" y="60" width="100" height="20" rx="4" fill="#a78bfa" />
-          <rect x="-20" y="90" width="140" height="20" rx="4" fill="#8b5cf6" />
-          <rect x="0" y="120" width="120" height="20" rx="4" fill="#7c3aed" />
-        </g>
+        {/* Floating code/stat elements removed */}
 
         {/* Computer/laptop */}
         <g transform="translate(400, 360)" filter="url(#shadow)">
@@ -254,52 +231,9 @@ const AnimatedTechHero = () => {
           <rect x="-150" y="110" width="300" height="10" rx="2" fill="#1e1b4b" />
         </g>
         
-        {/* Floating AI robot character */}
-        <g transform="translate(220, 260)" filter="url(#glow)" className="robot-part">
-          {/* Head */}
-          <circle cx="0" cy="0" r="50" fill="url(#robotGradient)" />
-          <circle cx="-20" cy="-10" r="10" fill="#fff" opacity="0.9" />
-          <circle cx="20" cy="-10" r="10" fill="#fff" opacity="0.9" />
-          <circle cx="-15" cy="-10" r="5" fill="#000" className="robot-eye left-eye" />
-          <circle cx="25" cy="-10" r="5" fill="#000" className="robot-eye right-eye" />
-          
-          {/* Antennas */}
-          <line x1="0" y1="-50" x2="0" y2="-70" stroke="#6d28d9" strokeWidth="4" />
-          <circle cx="0" cy="-75" r="5" fill="#a78bfa" className="pulse" />
-          
-          {/* Body elements */}
-          <rect x="-40" y="60" width="80" height="60" rx="20" fill="url(#robotGradient)" />
-          
-          {/* Arms */}
-          <path d="M-40 70 Q-80 50 -90 90" stroke="#7c3aed" strokeWidth="8" fill="none" className="robot-part" />
-          <circle cx="-90" cy="90" r="10" fill="#8b5cf6" className="robot-part" />
-          
-          <path d="M40 70 Q80 40 100 60" stroke="#7c3aed" strokeWidth="8" fill="none" className="robot-part" />
-          <circle cx="100" cy="60" r="10" fill="#8b5cf6" className="robot-part" />
-          
-          {/* Digital elements */}
-          <circle cx="-15" cy="80" r="5" fill="#a5b4fc" className="screen-element" />
-          <circle cx="0" cy="80" r="5" fill="#818cf8" className="screen-element" />
-          <circle cx="15" cy="80" r="5" fill="#6366f1" className="screen-element" />
-        </g>
         
-        {/* Floating data/tech elements */}
-        <g transform="translate(530, 230)" className="tech-element">
-          {/* 3D cube */}
-          <polygon points="0,0 40,-20 80,0 40,20" fill="#c4b5fd" opacity="0.8" />
-          <polygon points="80,0 40,20 40,60 80,40" fill="#8b5cf6" opacity="0.8" />
-          <polygon points="0,0 40,20 40,60 0,40" fill="#a78bfa" opacity="0.8" />
-          
-          {/* AI nodes */}
-          <circle cx="0" cy="-40" r="10" fill="#4f46e5" opacity="0.8" className="tech-element" />
-          <circle cx="40" cy="-60" r="8" fill="#4f46e5" opacity="0.8" className="tech-element" />
-          <circle cx="80" cy="-40" r="10" fill="#4f46e5" opacity="0.8" className="tech-element" />
-          
-          <line x1="0" y1="-40" x2="40" y2="-60" stroke="#a5b4fc" strokeWidth="2" className="connection" />
-          <line x1="40" y1="-60" x2="80" y2="-40" stroke="#a5b4fc" strokeWidth="2" className="connection" />
-          <line x1="0" y1="-40" x2="40" y2="-20" stroke="#a5b4fc" strokeWidth="2" className="connection" />
-          <line x1="80" y1="-40" x2="40" y2="-20" stroke="#a5b4fc" strokeWidth="2" className="connection" />
-        </g>
+        
+        
         
         {/* Floating particles with enhanced effects */}
         <circle cx="150" cy="150" r="5" fill="#6366f1" opacity="0.8" className="particle">
