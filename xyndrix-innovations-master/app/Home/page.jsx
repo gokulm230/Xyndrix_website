@@ -70,8 +70,7 @@ export default function HomePage() {
         <div className="absolute inset-0">
           <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-blue-50 to-transparent"></div>
           <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-blue-50 to-transparent"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.1),transparent_50%)]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(37,99,235,0.1),transparent_50%)]"></div>
+      
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
