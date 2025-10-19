@@ -1,0 +1,41 @@
+@keyframes marqueeAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 2));
+  }
+}
+
+.marqueeContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 10px 0;
+  min-height: 120px;
+}
+
+.marqueeTrack {
+  display: flex;
+  animation: marqueeAnimation 80s linear infinite;
+  width: fit-content;
+  padding: 20px 0;
+}
+
+/* Adjust animation duration based on screen size */
+@media (max-width: 768px) {
+  .marqueeTrack {
+    animation-duration: 60s;
+    padding: 15px 0;
+  }
+}
+
+/* Control animation on hover if desired */
+.pauseOnHover:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+/* Control animation when tab is not visible */
+.marqueeTrack.paused {
+  animation-play-state: paused;
+}

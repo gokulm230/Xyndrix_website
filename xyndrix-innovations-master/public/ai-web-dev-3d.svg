@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <!-- Background elements -->
+  <defs>
+    <linearGradient id="screenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <linearGradient id="robotGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#6d28d9" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#6366f1" flood-opacity="0.3" />
+    </filter>
+  </defs>
+  
+  <!-- Floating code elements -->
+  <g transform="translate(50, 100)" opacity="0.7">
+    <rect x="0" y="0" width="120" height="20" rx="4" fill="#c7d2fe" />
+    <rect x="20" y="30" width="160" height="20" rx="4" fill="#a5b4fc" />
+    <rect x="40" y="60" width="100" height="20" rx="4" fill="#818cf8" />
+    <rect x="20" y="90" width="140" height="20" rx="4" fill="#6366f1" />
+    <rect x="0" y="120" width="180" height="20" rx="4" fill="#4f46e5" />
+  </g>
+  
+  <g transform="translate(600, 150)" opacity="0.7">
+    <rect x="0" y="0" width="120" height="20" rx="4" fill="#ddd6fe" />
+    <rect x="-20" y="30" width="160" height="20" rx="4" fill="#c4b5fd" />
+    <rect x="-40" y="60" width="100" height="20" rx="4" fill="#a78bfa" />
+    <rect x="-20" y="90" width="140" height="20" rx="4" fill="#8b5cf6" />
+    <rect x="0" y="120" width="120" height="20" rx="4" fill="#7c3aed" />
+  </g>
+
+  <!-- Computer/laptop -->
+  <g transform="translate(400, 360)" filter="url(#shadow)">
+    <!-- Screen -->
+    <rect x="-120" y="-100" width="240" height="160" rx="8" fill="#1e1b4b" stroke="#312e81" stroke-width="4" />
+    <rect x="-110" y="-90" width="220" height="140" rx="4" fill="url(#screenGradient)" />
+    
+    <!-- Screen content - UI elements -->
+    <rect x="-90" y="-70" width="80" height="10" rx="2" fill="#e0e7ff" opacity="0.8" />
+    <rect x="-90" y="-50" width="60" height="10" rx="2" fill="#e0e7ff" opacity="0.6" />
+    <rect x="-90" y="-30" width="40" height="10" rx="2" fill="#e0e7ff" opacity="0.6" />
+    
+    <rect x="10" y="-70" width="70" height="70" rx="4" fill="#c7d2fe" opacity="0.8" />
+    <circle cx="45" cy="-35" r="20" fill="#818cf8" />
+    
+    <rect x="-90" y="0" width="180" height="30" rx="4" fill="#c7d2fe" opacity="0.4" />
+    
+    <!-- Base -->
+    <path d="M-120 65 L120 65 L150 110 L-150 110 Z" fill="#312e81" />
+    <rect x="-150" y="110" width="300" height="10" rx="2" fill="#1e1b4b" />
+  </g>
+  
+  <!-- Floating AI robot character -->
+  <g transform="translate(220, 260)" filter="url(#glow)">
+    <!-- Head -->
+    <circle cx="0" cy="0" r="50" fill="url(#robotGradient)" />
+    <circle cx="-20" cy="-10" r="10" fill="#fff" opacity="0.9" />
+    <circle cx="20" cy="-10" r="10" fill="#fff" opacity="0.9" />
+    <circle cx="-15" cy="-10" r="5" fill="#000" />
+    <circle cx="25" cy="-10" r="5" fill="#000" />
+    
+    <!-- Antennas -->
+    <line x1="0" y1="-50" x2="0" y2="-70" stroke="#6d28d9" stroke-width="4" />
+    <circle cx="0" cy="-75" r="5" fill="#a78bfa" />
+    
+    <!-- Body elements -->
+    <rect x="-40" y="60" width="80" height="60" rx="20" fill="url(#robotGradient)" />
+    
+    <!-- Arms -->
+    <path d="M-40 70 Q-80 50 -90 90" stroke="#7c3aed" stroke-width="8" fill="none" />
+    <circle cx="-90" cy="90" r="10" fill="#8b5cf6" />
+    
+    <path d="M40 70 Q80 40 100 60" stroke="#7c3aed" stroke-width="8" fill="none" />
+    <circle cx="100" cy="60" r="10" fill="#8b5cf6" />
+    
+    <!-- Digital elements -->
+    <circle cx="-15" cy="80" r="5" fill="#a5b4fc" />
+    <circle cx="0" cy="80" r="5" fill="#818cf8" />
+    <circle cx="15" cy="80" r="5" fill="#6366f1" />
+  </g>
+  
+  <!-- Floating data/tech elements -->
+  <g transform="translate(530, 230)">
+    <!-- 3D cube -->
+    <polygon points="0,0 40,-20 80,0 40,20" fill="#c4b5fd" opacity="0.8" />
+    <polygon points="80,0 40,20 40,60 80,40" fill="#8b5cf6" opacity="0.8" />
+    <polygon points="0,0 40,20 40,60 0,40" fill="#a78bfa" opacity="0.8" />
+    
+    <!-- AI nodes -->
+    <circle cx="0" cy="-40" r="10" fill="#4f46e5" opacity="0.8" />
+    <circle cx="40" cy="-60" r="8" fill="#4f46e5" opacity="0.8" />
+    <circle cx="80" cy="-40" r="10" fill="#4f46e5" opacity="0.8" />
+    
+    <line x1="0" y1="-40" x2="40" y2="-60" stroke="#a5b4fc" stroke-width="2" />
+    <line x1="40" y1="-60" x2="80" y2="-40" stroke="#a5b4fc" stroke-width="2" />
+    <line x1="0" y1="-40" x2="40" y2="-20" stroke="#a5b4fc" stroke-width="2" />
+    <line x1="80" y1="-40" x2="40" y2="-20" stroke="#a5b4fc" stroke-width="2" />
+  </g>
+  
+  <!-- Floating particles -->
+  <circle cx="150" cy="150" r="5" fill="#6366f1" opacity="0.8" />
+  <circle cx="650" cy="300" r="4" fill="#6366f1" opacity="0.8" />
+  <circle cx="400" cy="100" r="6" fill="#6366f1" opacity="0.8" />
+  <circle cx="230" cy="400" r="3" fill="#6366f1" opacity="0.8" />
+  <circle cx="600" cy="450" r="5" fill="#6366f1" opacity="0.8" />
+  
+  <!-- Connection lines -->
+  <line x1="150" y1="150" x2="400" y2="100" stroke="#c7d2fe" stroke-width="1" opacity="0.5" />
+  <line x1="400" y1="100" x2="650" y2="300" stroke="#c7d2fe" stroke-width="1" opacity="0.5" />
+  <line x1="230" y1="400" x2="400" y2="100" stroke="#c7d2fe" stroke-width="1" opacity="0.5" />
+  <line x1="600" y1="450" x2="650" y2="300" stroke="#c7d2fe" stroke-width="1" opacity="0.5" />
+</svg>
