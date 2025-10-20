@@ -18,13 +18,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+      </head>
       <body
         className="antialiased flex flex-col min-h-screen"
         style={{
-          fontFamily: 'var(--bxp-charlie-text-font-family)',
-          '--atlassian-recommended-system-fonts': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
-          '--bxp-charlie-display-font-family': '"Charlie Display", var(--atlassian-recommended-system-fonts)',
-          '--bxp-charlie-text-font-family': '"Charlie Text", var(--atlassian-recommended-system-fonts)'
+          fontFamily: '"Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
         }}
       >
         <Header />
