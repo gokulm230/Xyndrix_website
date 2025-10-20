@@ -97,7 +97,7 @@ export default function HomePage() {
       <Hero />
 
       {/* Why Choose Xyndrix Section - Redesigned */}
-      <WhyChooseXyndrix />
+      {/* <WhyChooseXyndrix /> */}
 
       {/* Statistics Section */}
       <StatsSection />
