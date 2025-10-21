@@ -34,9 +34,9 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
-        <FloatingWhatsApp phoneNumber="9488345831" />
-        <FloatingRobot />
-        <MobileFloatingRobot />
+        {/* <FloatingWhatsApp phoneNumber="9488345831" /> */}
+        {/* <FloatingRobot /> */}
+        {/* <MobileFloatingRobot /> */}
       </body>
     </html>
   );

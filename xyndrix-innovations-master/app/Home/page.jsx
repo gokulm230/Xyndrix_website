@@ -11,6 +11,7 @@ import StatsSection from "../Components/ui/animated-stats-hero";
 import WhyChooseXyndrix from "../Components/ui/why-choose-xyndrix-section";
 import Hero from "../Components/ui/home-hero-section";
 import HowWeWork from "../Components/ui/how-we-work";
+import VisionMissionSection from "../Components/ui/vision-mission-section";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,8 +100,8 @@ export default function HomePage() {
       {/* Why Choose Xyndrix Section - Redesigned */}
       {/* <WhyChooseXyndrix /> */}
 
-      {/* Statistics Section */}
-      <StatsSection />
+      {/* Vision & Mission Section */}
+      <VisionMissionSection />
 
       {/* Customer Logos Section - Animated Running Marquee */}
       <CustomerLogoMarquee
@@ -120,11 +121,20 @@ export default function HomePage() {
             name: "Surya Coconut",
             src: "https://www.suryacoconut.shop/assets/surya-logo-D7BLbdcg.png",
           },
+          {
+            id: "sevvel-shelters",
+            name: "sevvel-sheters",
+            src: "/sevvel-shelters-logo.png",
+          },
         ]}
         title="Our Partners & Clients"
         subtitle="Organizations we've collaborated with to deliver innovative solutions"
         speed={2.3}
       />
+
+      {/* Statistics Section */}
+      <StatsSection />
+
 
       {/* How We Work Section */}
       <HowWeWork />

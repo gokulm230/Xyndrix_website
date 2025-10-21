@@ -136,7 +136,7 @@ const CustomerLogoMarquee = ({ customLogos, title, subtitle, speed: customSpeed 
   };
 
   return (
-    <div className="w-full bg-white py-16 border-t border-gray-100">
+    <div className="w-full bg-white  py-30 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-5xl font-bold text-gray-900 mb-4">

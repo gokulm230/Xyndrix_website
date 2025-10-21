@@ -176,7 +176,7 @@ export default function Header() {
                             href="/About"
                             className="block text-sm text-gray-800 hover:text-blue-500"
                           >
-                            About Xyndrix
+                            About Us
                           </Link>
                         </li>
                         <li>
@@ -630,13 +630,6 @@ export default function Header() {
               </div>
             )}
           </div>
-
-          <Link
-            href="/why-choose-xyndrix"
-            className="font-bold text-gray-700 hover:text-blue-500 transition-colors"
-          >
-            Why Choose Xyndrix
-          </Link>
         </div>
 
         <div className="flex items-center ml-8 space-x-4">
@@ -708,7 +701,7 @@ export default function Header() {
                     className="block py-1 text-sm font-bold text-gray-600 hover:text-blue-500"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    About Xyndrix
+                    About Us
                   </Link>
                   <Link
                     href="/Team"
