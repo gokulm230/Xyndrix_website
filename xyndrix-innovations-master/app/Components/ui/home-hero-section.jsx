@@ -1,16 +1,12 @@
 "use client";
 import Link from "next/link";
 import AnimatedTechHero from "./animated-tech-hero";
+import Image from "next/image";
 
 const Hero = () => {
   return (
     <div>
       <div className="relative bg-white overflow-hidden  py-20 lg:py-42">
-        <div className="absolute inset-0">
-          <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-blue-50 to-transparent"></div>
-          <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-blue-50 to-transparent"></div>
-        </div>
-
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -44,17 +40,6 @@ const Hero = () => {
                 built by great{" "}
                 <span className="text-black relative hero-word-main">
                   teams
-                  <svg
-                    className="absolute top-0 right-0 transform translate-x-full -translate-y-1/4 w-8 h-8 text-black"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-                      fill="currentColor"
-                    />
-                  </svg>
                 </span>
               </h1>
 
@@ -65,10 +50,10 @@ const Hero = () => {
 
               <div className="flex flex-wrap gap-4">
                 <Link href="/Contact" className="relative group hero-cta">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-blue-600 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-300"></div>
-                  <button className="relative bg-gradient-to-r from-blue-600 to-blue-600 text-white font-medium py-3 px-8 rounded-lg transition duration-300 group-hover:scale-105">
+                  <div className="absolute -inset-0.5  rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-300"></div>
+                  <button className="relative bg-blue-600  text-white font-medium py-3 px-8 rounded-lg transition duration-300 group-hover:scale-105">
                     Let's get started!
-                    <span className="absolute right-2 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
+                    <span className="absolute right-4  top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
                       →
                     </span>
                   </button>
@@ -86,7 +71,13 @@ const Hero = () => {
               <div className="relative">
                 <div className="relative w-full h-full transform hover:scale-105 transition-transform duration-500 hero-visual">
                   <div className="w-[650px] h-[550px] mx-auto">
-                    <AnimatedTechHero />
+                    {/* <AnimatedTechHero /> */}
+                    <Image
+                      src="/Hero_image.jpg"
+                      alt="Description of image"
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   </div>
                   <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-blue-500/20 rounded-xl blur-xl opacity-30 -z-10"></div>
                 </div>
