@@ -99,17 +99,17 @@ const content = [
 
 export function WhyChooseXyndrixSticky() {
   return (
-    <div className="w-full py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-black">
+    <div className="w-full py-20 bg-gradient-to-br  ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block py-2 px-4 bg-blue-600/20 text-blue-300 font-semibold rounded-full mb-4 border border-blue-500/30">
             Our Advantage
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Why Choose <span className="text-blue-400">Xyndrix</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             We combine technical expertise with innovative thinking to deliver solutions that drive your business forward.
           </p>
         </div>
