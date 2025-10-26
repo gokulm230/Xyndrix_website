@@ -6,7 +6,7 @@ import Image from "next/image";
 const Hero = () => {
   return (
     <div>
-      <div className="relative bg-white overflow-hidden  py-20 lg:py-42">
+      <div className="relative bg-white overflow-hidden  py-20 lg:py-20">
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1">
@@ -66,7 +66,6 @@ const Hero = () => {
                 </Link>
               </div>
             </div>
-
             <div className="order-1 lg:order-2">
               <div className="relative">
                 <div className="relative w-full h-full transform hover:scale-105 transition-transform duration-500 hero-visual">

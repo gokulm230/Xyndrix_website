@@ -8,16 +8,16 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [companyDropdownOpen, setCompanyDropdownOpen] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
-  const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
+  const [servicesDropdownOpen, setservicesDropdownOpen] = useState(false);
   const [careersDropdownOpen, setCareersDropdownOpen] = useState(false);
 
   const companyRef = useRef(null);
   const productsRef = useRef(null);
-  const solutionsRef = useRef(null);
+  const servicesRef = useRef(null);
   const careersRef = useRef(null);
   const companyCloseTimeout = useRef(null);
   const productsCloseTimeout = useRef(null);
-  const solutionsCloseTimeout = useRef(null);
+  const servicesCloseTimeout = useRef(null);
   const careersCloseTimeout = useRef(null);
 
   const clearCloseTimeout = (name) => {
@@ -29,9 +29,9 @@ export default function Header() {
       clearTimeout(productsCloseTimeout.current);
       productsCloseTimeout.current = null;
     }
-    if (name === "solutions" && solutionsCloseTimeout.current) {
-      clearTimeout(solutionsCloseTimeout.current);
-      solutionsCloseTimeout.current = null;
+    if (name === "services" && servicesCloseTimeout.current) {
+      clearTimeout(servicesCloseTimeout.current);
+      servicesCloseTimeout.current = null;
     }
     if (name === "careers" && careersCloseTimeout.current) {
       clearTimeout(careersCloseTimeout.current);
@@ -45,17 +45,17 @@ export default function Header() {
     if (name === "company") {
       setCompanyDropdownOpen(true);
       setProductsDropdownOpen(false);
-      setSolutionsDropdownOpen(false);
+      setservicesDropdownOpen(false);
       setCareersDropdownOpen(false);
     }
     if (name === "products") {
       setProductsDropdownOpen(true);
       setCompanyDropdownOpen(false);
-      setSolutionsDropdownOpen(false);
+      setservicesDropdownOpen(false);
       setCareersDropdownOpen(false);
     }
-    if (name === "solutions") {
-      setSolutionsDropdownOpen(true);
+    if (name === "services") {
+      setservicesDropdownOpen(true);
       setCompanyDropdownOpen(false);
       setProductsDropdownOpen(false);
       setCareersDropdownOpen(false);
@@ -64,7 +64,7 @@ export default function Header() {
       setCareersDropdownOpen(true);
       setCompanyDropdownOpen(false);
       setProductsDropdownOpen(false);
-      setSolutionsDropdownOpen(false);
+      setservicesDropdownOpen(false);
     }
   };
 
@@ -74,12 +74,12 @@ export default function Header() {
     const id = setTimeout(() => {
       if (name === "company") setCompanyDropdownOpen(false);
       if (name === "products") setProductsDropdownOpen(false);
-      if (name === "solutions") setSolutionsDropdownOpen(false);
+      if (name === "services") setservicesDropdownOpen(false);
       if (name === "careers") setCareersDropdownOpen(false);
     }, delay);
     if (name === "company") companyCloseTimeout.current = id;
     if (name === "products") productsCloseTimeout.current = id;
-    if (name === "solutions") solutionsCloseTimeout.current = id;
+    if (name === "services") servicesCloseTimeout.current = id;
     if (name === "careers") careersCloseTimeout.current = id;
   };
 
@@ -92,15 +92,15 @@ export default function Header() {
     if (dropdown === "company") {
       setCompanyDropdownOpen(!companyDropdownOpen);
       setProductsDropdownOpen(false);
-      setSolutionsDropdownOpen(false);
+      setservicesDropdownOpen(false);
       setCareersDropdownOpen(false);
     } else if (dropdown === "products") {
       setProductsDropdownOpen(!productsDropdownOpen);
       setCompanyDropdownOpen(false);
-      setSolutionsDropdownOpen(false);
+      setservicesDropdownOpen(false);
       setCareersDropdownOpen(false);
-    } else if (dropdown === "solutions") {
-      setSolutionsDropdownOpen(!solutionsDropdownOpen);
+    } else if (dropdown === "services") {
+      setservicesDropdownOpen(!servicesDropdownOpen);
       setCompanyDropdownOpen(false);
       setProductsDropdownOpen(false);
       setCareersDropdownOpen(false);
@@ -108,7 +108,7 @@ export default function Header() {
       setCareersDropdownOpen(!careersDropdownOpen);
       setCompanyDropdownOpen(false);
       setProductsDropdownOpen(false);
-      setSolutionsDropdownOpen(false);
+      setservicesDropdownOpen(false);
     }
   };
 
@@ -359,17 +359,17 @@ export default function Header() {
             )}
           </div>
 
-          {/* Solutions Dropdown - Hover */}
+          {/* services Dropdown - Hover */}
           <div
-            ref={solutionsRef}
-            onMouseEnter={() => openDropdown("solutions")}
-            onMouseLeave={() => closeDropdownDelayed("solutions")}
+            ref={servicesRef}
+            onMouseEnter={() => openDropdown("services")}
+            onMouseLeave={() => closeDropdownDelayed("services")}
           >
             <button className="flex items-center font-bold text-gray-700 hover:text-blue-500 transition-colors">
-              Solutions
+              Services
               <svg
                 className={`ml-1 w-4 h-4 transition-transform ${
-                  solutionsDropdownOpen ? "rotate-180" : ""
+                  servicesDropdownOpen ? "rotate-180" : ""
                 }`}
                 fill="none"
                 viewBox="0 0 24 24"
@@ -384,12 +384,12 @@ export default function Header() {
               </svg>
             </button>
 
-            {/* Solutions Mega Menu */}
-            {solutionsDropdownOpen && (
+            {/* services Mega Menu */}
+            {servicesDropdownOpen && (
               <div
                 className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[960px] bg-white shadow-xl rounded-2xl z-50 border border-gray-200"
-                onMouseEnter={() => clearCloseTimeout("solutions")}
-                onMouseLeave={() => closeDropdownDelayed("solutions")}
+                onMouseEnter={() => clearCloseTimeout("services")}
+                onMouseLeave={() => closeDropdownDelayed("services")}
               >
                 <div className="p-6">
                   <div className="grid grid-cols-4 gap-6">
@@ -632,21 +632,21 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="flex items-center ml-8 space-x-4">
+        <div className="flex  mx-20 space-x-4">
           <Link
             href="/contact"
-            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300 font-bold"
+            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300 font-bold md:block hidden"
           >
             Let's Get Started!
           </Link>
           <button
-            className="md:hidden"
+            className="md:hidden "
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-gray-700"
+              className="h-6 w-6 text-gray-700 "
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -765,16 +765,16 @@ export default function Header() {
               )}
             </div>
 
-            {/* Mobile Solutions Dropdown */}
+            {/* Mobile services Dropdown */}
             <div className="py-2">
               <button
                 className="flex items-center justify-between w-full font-bold text-gray-700 hover:text-blue-500"
-                onClick={() => toggleMobileDropdown("solutions")}
+                onClick={() => toggleMobileDropdown("services")}
               >
-                <span>Solutions</span>
+                <span>services</span>
                 <svg
                   className={`ml-1 w-4 h-4 transition-transform ${
-                    solutionsDropdownOpen ? "rotate-180" : ""
+                    servicesDropdownOpen ? "rotate-180" : ""
                   }`}
                   fill="none"
                   viewBox="0 0 24 24"
@@ -789,17 +789,17 @@ export default function Header() {
                 </svg>
               </button>
 
-              {solutionsDropdownOpen && (
+              {servicesDropdownOpen && (
                 <div className="pl-4 mt-2 space-y-2 border-l-2 border-gray-100">
                   <Link
-                    href="/Solutions/ai-solutions"
+                    href="/services/ai-services"
                     className="block py-1 text-sm font-bold text-gray-600 hover:text-blue-500"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    AI Solutions
+                    AI services
                   </Link>
                   <Link
-                    href="/Solutions/cybersecurity"
+                    href="/services/cybersecurity"
                     className="block py-1 text-sm font-bold text-gray-600 hover:text-blue-500"
                     onClick={() => setMobileMenuOpen(false)}
                   >

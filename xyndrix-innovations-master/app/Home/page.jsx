@@ -100,8 +100,8 @@ export default function HomePage() {
       {/* Why Choose Xyndrix Section - Redesigned */}
       {/* <WhyChooseXyndrix /> */}
 
-      {/* Vision & Mission Section */}
-      <VisionMissionSection />
+       {/* How We Work Section */}
+      <HowWeWork />
 
       {/* Customer Logos Section - Animated Running Marquee */}
       <CustomerLogoMarquee
@@ -136,8 +136,7 @@ export default function HomePage() {
       <StatsSection />
 
 
-      {/* How We Work Section */}
-      <HowWeWork />
+     
     </div>
   );
 }

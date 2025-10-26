@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,36 +23,25 @@ const HowWeWork = () => {
         },
       });
 
-      // Smooth heading animation
       tl.fromTo(
         headingRef.current,
-        { opacity: 0, y: 50, scale: 0.95, rotateX: 10 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          rotateX: 0,
-          duration: 1,
-          ease: "back.out(1.2)",
-        }
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
       );
 
-      // Smooth staggered cards animation
       const cardEls = cardsRef.current.filter(Boolean);
       if (cardEls.length) {
         tl.fromTo(
           cardEls,
-          { opacity: 0, y: 60, scale: 0.9, rotateY: 8 },
+          { opacity: 0, y: 60 },
           {
             opacity: 1,
             y: 0,
-            scale: 1,
-            rotateY: 0,
             duration: 1,
-            ease: "back.out(1.1)",
+            ease: "power3.out",
             stagger: 0.2,
           },
-          "-=0.5" // slightly overlaps with heading animation
+          "-=0.5"
         );
       }
     }, sectionRef);
@@ -62,62 +52,85 @@ const HowWeWork = () => {
   const steps = [
     {
       id: 1,
-      title: "Discovery",
+      title: "Discovery & Research",
       description:
-        "We begin by understanding your vision, business needs, and goals to set a clear project direction.",
+        "We begin by diving deep into your goals, challenges, and target audience to form a clear foundation for your project.",
+      image: "/discovery&research.jpg",
     },
     {
       id: 2,
-      title: "Strategy & Design",
+      title: "Design & Strategy",
       description:
-        "Our team crafts a strategic roadmap and designs intuitive user experiences tailored to your objectives.",
+        "Our designers and strategists collaborate to create clean, intuitive, and conversion-focused digital experiences.",
+      image: "/design.jpg",
     },
     {
       id: 3,
-      title: "Development & Launch",
+      title: "Development & Testing",
       description:
-        "We develop robust, scalable solutions and ensure a seamless launch with precision and transparency.",
+        "We bring designs to life with scalable, efficient code — ensuring performance, security, and smooth user experiences.",
+      image: "/development&testing.jpg",
+    },
+    {
+      id: 4,
+      title: "Launch & Growth",
+      description:
+        "Once live, we continue to optimize your product through data-driven insights, updates, and performance scaling.",
+      image: "/launch.jpg",
     },
   ];
 
   return (
     <section
       ref={sectionRef}
-      className="relative py-28 bg-gradient-to-b from-white to-gray-50 text-black overflow-hidden"
+      className="relative py-28 bg-gradient-to-b from-white to-blue-50 text-black overflow-hidden"
     >
-      <div className="absolute top-0 right-20 w-56 h-56 bg-blue-100 rounded-full blur-3xl opacity-50 pointer-events-none"></div>
-      <div className="absolute bottom-10 left-10 w-64 h-64 bg-indigo-100 rounded-full blur-3xl opacity-40 pointer-events-none"></div>
+      {/* background accents */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-blue-200 rounded-full blur-3xl opacity-40"></div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-2xl mx-auto text-center mb-20">
-          <span className="inline-block py-1 px-4 bg-blue-50 text-blue-600 font-semibold rounded-full mb-5 border border-blue-100">
-            Our Process
+        {/* Header */}
+        <div className="max-w-3xl mx-auto text-center mb-20">
+          <span className="inline-block py-1 px-5 bg-blue-100 text-blue-700 font-semibold rounded-full mb-5 border border-blue-200">
+            How We Work
           </span>
-
-          <h2 ref={headingRef} className="text-4xl md:text-5xl font-bold mb-6">
-            How We Work With You
+          <h2
+            ref={headingRef}
+            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+          >
+            Our Process to Build Exceptional Products
           </h2>
-
           <p className="text-gray-600 text-lg leading-relaxed">
-            Our proven methodology ensures every project we deliver is innovative, efficient, and impactful.
+            We follow a structured yet flexible approach to ensure your product
+            is built efficiently, beautifully, and with a lasting impact.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
             <div
               key={step.id}
               ref={(el) => (cardsRef.current[index] = el)}
-              className="group bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-500 p-10 text-center hover:-translate-y-3 relative overflow-hidden"
+              className="relative group rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
             >
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                {step.id}
+              <div className="relative w-full h-80">
+                <Image
+                  src={step.image}
+                  alt={step.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent group-hover:from-blue-700/80 transition-all duration-500"></div>
               </div>
 
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                {step.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">{step.description}</p>
+              <div className="absolute bottom-0 left-0 p-6 text-white z-10">
+                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                <p className="text-sm opacity-90 leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
             </div>
           ))}
         </div>
