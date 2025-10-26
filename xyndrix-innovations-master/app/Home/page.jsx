@@ -6,12 +6,11 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedTechHero from "../Components/ui/animated-tech-hero";
-import CustomerLogoMarquee from "../Components/ui/customer-logo-marquee";
-import StatsSection from "../Components/ui/animated-stats-hero";
 import WhyChooseXyndrix from "../Components/ui/why-choose-xyndrix-section";
 import Hero from "../Components/ui/home-hero-section";
 import HowWeWork from "../Components/ui/how-we-work";
 import VisionMissionSection from "../Components/ui/vision-mission-section";
+import { WhyChooseXyndrixSticky } from "../Components/ui/why-choose-xyndrix-sticky";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -97,46 +96,10 @@ export default function HomePage() {
       {/* Hero Section */}
       <Hero />
 
-      {/* Why Choose Xyndrix Section - Redesigned */}
-      {/* <WhyChooseXyndrix /> */}
-
-       {/* How We Work Section */}
+      {/* Why Choose Xyndrix - Sticky Scroll Section */}
+      <WhyChooseXyndrixSticky />
+      {/* How We Work Section */}
       <HowWeWork />
-
-      {/* Customer Logos Section - Animated Running Marquee */}
-      <CustomerLogoMarquee
-        customLogos={[
-          {
-            id: "karupa",
-            name: "Karupa Foundation",
-            src: "https://karupafoundation.com/images/logo%20final.jpg",
-          },
-          {
-            id: "kahe",
-            name: "KAHE",
-            src: "https://img.kompass.com/sys-master-images/h24/h5a/9687875125278/kahe-jpg",
-          },
-          {
-            id: "surya",
-            name: "Surya Coconut",
-            src: "https://www.suryacoconut.shop/assets/surya-logo-D7BLbdcg.png",
-          },
-          {
-            id: "sevvel-shelters",
-            name: "sevvel-sheters",
-            src: "/sevvel-shelters-logo.png",
-          },
-        ]}
-        title="Our Partners & Clients"
-        subtitle="Organizations we've collaborated with to deliver innovative solutions"
-        speed={2.3}
-      />
-
-      {/* Statistics Section */}
-      <StatsSection />
-
-
-     
     </div>
   );
 }

@@ -4,6 +4,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "motion/react";
+import { LampContainer } from "../../../components/ui/lamp";
 
 gsap.registerPlugin(ScrollTrigger);
 
