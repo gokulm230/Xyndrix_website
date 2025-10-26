@@ -11,6 +11,7 @@ import Hero from "../Components/ui/home-hero-section";
 import HowWeWork from "../Components/ui/how-we-work";
 import VisionMissionSection from "../Components/ui/vision-mission-section";
 import { WhyChooseXyndrixSticky } from "../Components/ui/why-choose-xyndrix-sticky";
+import BlogsSection from "../Components/ui/blogs-section";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -98,8 +99,12 @@ export default function HomePage() {
 
       {/* Why Choose Xyndrix - Sticky Scroll Section */}
       <WhyChooseXyndrixSticky />
+      
       {/* How We Work Section */}
       <HowWeWork />
+
+      {/* Blogs Section */}
+      <BlogsSection />
     </div>
   );
 }

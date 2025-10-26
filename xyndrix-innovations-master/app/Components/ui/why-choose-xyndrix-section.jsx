@@ -1,10 +1,96 @@
 "use client";
 
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const WhyChooseXyndrix = () => {
+  const containerRef = useRef(null);
+  const headerRef = useRef(null);
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Header animation
+      if (headerRef.current) {
+        gsap.from(headerRef.current.children, {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        });
+      }
+
+      // Cards animation
+      gsap.from(cardsRef.current, {
+        y: 80,
+        opacity: 0,
+        scale: 0.8,
+        rotation: -5,
+        duration: 1.2,
+        stagger: {
+          amount: 0.8,
+          from: "start"
+        },
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".cards-grid",
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      // Continuous floating animation for cards
+      cardsRef.current.forEach((card, index) => {
+        if (card) {
+          gsap.to(card, {
+            y: -10,
+            duration: 2 + index * 0.1,
+            ease: "power1.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: index * 0.2
+          });
+
+          // Icon rotation on scroll
+          const icon = card.querySelector('.card-icon');
+          if (icon) {
+            gsap.to(icon, {
+              rotation: 360,
+              duration: 8,
+              ease: "none",
+              repeat: -1
+            });
+          }
+        }
+      });
+
+      // Background gradient animation
+      gsap.to(".gradient-bg", {
+        backgroundPosition: "200% 50%",
+        duration: 8,
+        ease: "none",
+        repeat: -1,
+        yoyo: true
+      });
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="py-20 bg-white why-choose-section">
+    <div ref={containerRef} className="py-20 bg-white why-choose-section overflow-hidden">
     <div className="container mx-auto px-4">
-      <div className="max-w-xl mx-auto text-center mb-16">
+      <div ref={headerRef} className="max-w-xl mx-auto text-center mb-16">
         <span className="inline-block py-1 px-3 bg-blue-100 text-blue-600 font-semibold rounded-full mb-4">
           Our Advantage
         </span>
@@ -17,16 +103,16 @@ const WhyChooseXyndrix = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+      <div className="cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
         {/* Technical Excellence Card */}
-        <div className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 why-card hover:shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-700 opacity-80"></div>
+        <div ref={(el) => (cardsRef.current[0] = el)} className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 why-card hover:shadow-2xl">
+          <div className="gradient-bg absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-700 opacity-80" style={{backgroundSize: '200% 200%'}}></div>
           <div className="absolute inset-0 bg-[url('/patterns/circuit-board.svg')] opacity-20"></div>
 
           {/* Content Container */}
           <div className="relative h-full p-8 flex flex-col">
             <div className="mb-6 flex items-center">
-              <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center text-blue-600 shadow-md transform group-hover:rotate-6 transition-transform duration-300">
+              <div className="card-icon w-14 h-14 bg-white rounded-xl flex items-center justify-center text-blue-600 shadow-md transform group-hover:rotate-6 transition-transform duration-300">
                 <svg
                   className="w-7 h-7"
                   fill="currentColor"
@@ -70,14 +156,14 @@ const WhyChooseXyndrix = () => {
         </div>
 
         {/* Collaborative Approach Card */}
-        <div className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 why-card hover:shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-blue-600 opacity-80"></div>
+        <div ref={(el) => (cardsRef.current[1] = el)} className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 why-card hover:shadow-2xl">
+          <div className="gradient-bg absolute inset-0 bg-gradient-to-br from-purple-500 to-blue-600 opacity-80" style={{backgroundSize: '200% 200%'}}></div>
           <div className="absolute inset-0 bg-[url('/patterns/network.svg')] opacity-20"></div>
 
           {/* Content Container */}
           <div className="relative h-full p-8 flex flex-col">
             <div className="mb-6 flex items-center">
-              <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center text-purple-600 shadow-md transform group-hover:rotate-6 transition-transform duration-300">
+              <div className="card-icon w-14 h-14 bg-white rounded-xl flex items-center justify-center text-purple-600 shadow-md transform group-hover:rotate-6 transition-transform duration-300">
                 <svg
                   className="w-7 h-7"
                   fill="currentColor"
@@ -117,14 +203,14 @@ const WhyChooseXyndrix = () => {
         </div>
 
         {/* Innovative Solutions Card */}
-        <div className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 why-card hover:shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-600 opacity-80"></div>
+        <div ref={(el) => (cardsRef.current[2] = el)} className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 why-card hover:shadow-2xl">
+          <div className="gradient-bg absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-600 opacity-80" style={{backgroundSize: '200% 200%'}}></div>
           <div className="absolute inset-0 bg-[url('/patterns/bubbles.svg')] opacity-20"></div>
 
           {/* Content Container */}
           <div className="relative h-full p-8 flex flex-col">
             <div className="mb-6 flex items-center">
-              <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center text-cyan-600 shadow-md transform group-hover:rotate-6 transition-transform duration-300">
+              <div className="card-icon w-14 h-14 bg-white rounded-xl flex items-center justify-center text-cyan-600 shadow-md transform group-hover:rotate-6 transition-transform duration-300">
                 <svg
                   className="w-7 h-7"
                   fill="currentColor"
@@ -168,14 +254,14 @@ const WhyChooseXyndrix = () => {
         </div>
 
         {/* Timely Delivery Card */}
-        <div className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 why-card hover:shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-700 opacity-80"></div>
+        <div ref={(el) => (cardsRef.current[3] = el)} className="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 why-card hover:shadow-2xl">
+          <div className="gradient-bg absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-700 opacity-80" style={{backgroundSize: '200% 200%'}}></div>
           <div className="absolute inset-0 bg-[url('/patterns/timeline.svg')] opacity-20"></div>
 
           {/* Content Container */}
           <div className="relative h-full p-8 flex flex-col">
             <div className="mb-6 flex items-center">
-              <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center text-indigo-600 shadow-md transform group-hover:rotate-6 transition-transform duration-300">
+              <div className="card-icon w-14 h-14 bg-white rounded-xl flex items-center justify-center text-indigo-600 shadow-md transform group-hover:rotate-6 transition-transform duration-300">
                 <svg
                   className="w-7 h-7"
                   fill="currentColor"

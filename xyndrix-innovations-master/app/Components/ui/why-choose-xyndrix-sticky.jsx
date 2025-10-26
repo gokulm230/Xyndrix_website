@@ -1,6 +1,11 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const content = [
   {
@@ -8,10 +13,11 @@ const content = [
     description:
       "Our team of expert developers stays at the forefront of technological advancements. We combine deep technical knowledge with innovative thinking to deliver solutions that drive your business forward using cutting-edge technologies and best practices.",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--blue-500),var(--blue-700))] text-white rounded-lg">
+      <div className="sticky-content-card flex h-full w-full items-center justify-center text-white rounded-lg" 
+           style={{ background: 'linear-gradient(to bottom right, #3b82f6, #1d4ed8)' }}>
         <div className="text-center p-8">
           <svg
-            className="w-16 h-16 mx-auto mb-4 text-white"
+            className="sticky-icon w-16 h-16 mx-auto mb-4 text-white"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +28,7 @@ const content = [
               clipRule="evenodd"
             />
           </svg>
-          <h3 className="text-2xl font-bold">Technical Excellence</h3>
+          <h3 className="sticky-title text-2xl font-bold">Technical Excellence</h3>
         </div>
       </div>
     ),
@@ -32,17 +38,18 @@ const content = [
     description:
       "We work closely with you to understand your business needs and deliver tailored solutions. Our collaborative methodology ensures that every project aligns perfectly with your vision and business objectives, creating lasting partnerships.",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--purple-500),var(--blue-600))] text-white rounded-lg">
+      <div className="sticky-content-card flex h-full w-full items-center justify-center text-white rounded-lg"
+           style={{ background: 'linear-gradient(to bottom right, #8b5cf6, #2563eb)' }}>
         <div className="text-center p-8">
           <svg
-            className="w-16 h-16 mx-auto mb-4 text-white"
+            className="sticky-icon w-16 h-16 mx-auto mb-4 text-white"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
           </svg>
-          <h3 className="text-2xl font-bold">Collaborative Approach</h3>
+          <h3 className="sticky-title text-2xl font-bold">Collaborative Approach</h3>
         </div>
       </div>
     ),
@@ -52,10 +59,11 @@ const content = [
     description:
       "We create cutting-edge solutions that help businesses stay ahead of the competition. Our innovative approach combines the latest technologies with creative problem-solving to deliver solutions that transform your business operations.",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--blue-600))] text-white rounded-lg">
+      <div className="sticky-content-card flex h-full w-full items-center justify-center text-white rounded-lg"
+           style={{ background: 'linear-gradient(to bottom right, #06b6d4, #2563eb)' }}>
         <div className="text-center p-8">
           <svg
-            className="w-16 h-16 mx-auto mb-4 text-white"
+            className="sticky-icon w-16 h-16 mx-auto mb-4 text-white"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +74,7 @@ const content = [
               clipRule="evenodd"
             />
           </svg>
-          <h3 className="text-2xl font-bold">Innovative Solutions</h3>
+          <h3 className="sticky-title text-2xl font-bold">Innovative Solutions</h3>
         </div>
       </div>
     ),
@@ -76,10 +84,11 @@ const content = [
     description:
       "We pride ourselves on meeting deadlines and delivering projects on time, every time. Our proven project management methodology and experienced team ensure that your project is completed within scope, on budget, and on schedule.",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--blue-600),var(--indigo-700))] text-white rounded-lg">
+      <div className="sticky-content-card flex h-full w-full items-center justify-center text-white rounded-lg"
+           style={{ background: 'linear-gradient(to bottom right, #2563eb, #4338ca)' }}>
         <div className="text-center p-8">
           <svg
-            className="w-16 h-16 mx-auto mb-4 text-white"
+            className="sticky-icon w-16 h-16 mx-auto mb-4 text-white"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +99,7 @@ const content = [
               clipRule="evenodd"
             />
           </svg>
-          <h3 className="text-2xl font-bold">Timely Delivery</h3>
+          <h3 className="sticky-title text-2xl font-bold">Timely Delivery</h3>
         </div>
       </div>
     ),
@@ -98,16 +107,95 @@ const content = [
 ];
 
 export function WhyChooseXyndrixSticky() {
+  const containerRef = useRef(null);
+  const headerRef = useRef(null);
+
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      // Header animation
+      if (headerRef.current) {
+        gsap.from(headerRef.current.children, {
+          y: 60,
+          opacity: 0,
+          duration: 1.2,
+          stagger: 0.3,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        });
+      }
+
+      // Sticky content cards animation (when they come into view)
+      gsap.set(".sticky-content-card", { scale: 0.8, opacity: 0 });
+      
+      ScrollTrigger.batch(".sticky-content-card", {
+        onEnter: (elements) => {
+          gsap.to(elements, {
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "back.out(1.7)",
+          });
+        },
+        onLeave: (elements) => {
+          gsap.to(elements, {
+            scale: 0.9,
+            opacity: 0.7,
+            duration: 0.3,
+          });
+        },
+        onEnterBack: (elements) => {
+          gsap.to(elements, {
+            scale: 1,
+            opacity: 1,
+            duration: 0.5,
+          });
+        },
+      });
+
+
+
+      // Title animation on scroll
+      gsap.to(".sticky-title", {
+        backgroundPosition: "200% center",
+        duration: 3,
+        ease: "none",
+        repeat: -1,
+        yoyo: true,
+      });
+
+      // Floating animation for content cards
+      gsap.to(".sticky-content-card", {
+        y: -5,
+        duration: 2,
+        ease: "power1.inOut",
+        yoyo: true,
+        repeat: -1,
+        stagger: {
+          amount: 1,
+          from: "random"
+        }
+      });
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div className="w-full py-20 bg-gradient-to-br  ">
+    <div ref={containerRef} className="w-full py-20 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block py-2 px-4 bg-blue-600/20 text-blue-300 font-semibold rounded-full mb-4 border border-blue-500/30">
+        <div ref={headerRef} className="text-center mb-16">
+          <span className="inline-block py-2 px-4 bg-blue-100 text-blue-800 font-semibold rounded-full mb-4 border border-blue-200">
             Our Advantage
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Why Choose <span className="text-blue-400">Xyndrix</span>
+            Why Us
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             We combine technical expertise with innovative thinking to deliver solutions that drive your business forward.
@@ -115,7 +203,9 @@ export function WhyChooseXyndrixSticky() {
         </div>
         
         {/* Sticky Scroll Content */}
-        <StickyScroll content={content} />
+        <div className="sticky-scroll-container px-4 sm:px-6 lg:px-8">
+          <StickyScroll content={content} />
+        </div>
       </div>
     </div>
   );

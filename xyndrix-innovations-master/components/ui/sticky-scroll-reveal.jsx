@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { useMotionValueEvent, useScroll } from "motion/react";
 import { motion } from "motion/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 
 export const StickyScroll = ({
@@ -10,87 +11,141 @@ export const StickyScroll = ({
 }) => {
   const [activeCard, setActiveCard] = React.useState(0);
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    // uncomment line 22 and comment line 23 if you DONT want the overflow container and want to have it change on the entire page scroll
-    // target: ref
-    container: ref,
-    offset: ["start start", "end start"],
-  });
+  const sectionsRef = useRef([]);
   const cardLength = content.length;
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const cardsBreakpoints = content.map((_, index) => index / cardLength);
-    const closestBreakpointIndex = cardsBreakpoints.reduce((acc, breakpoint, index) => {
-      const distance = Math.abs(latest - breakpoint);
-      if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
-        return index;
-      }
-      return acc;
-    }, 0);
-    setActiveCard(closestBreakpointIndex);
-  });
+  // Register GSAP plugin once
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+  }, []);
+
+  // Use GSAP ScrollTrigger to switch active card when each section enters viewport
+  useEffect(() => {
+    if (!sectionsRef.current || sectionsRef.current.length === 0) return;
+    const triggers = sectionsRef.current.map((el, i) =>
+      ScrollTrigger.create({
+        trigger: el,
+        start: "top center+=10%",
+        end: "bottom center-=10%",
+        onEnter: () => setActiveCard(i),
+        onEnterBack: () => setActiveCard(i),
+      })
+    );
+    return () => {
+      triggers.forEach((t) => t.kill());
+    };
+  }, [cardLength]);
 
   const backgroundColors = [
-    "#0f172a", // slate-900
-    "#000000", // black
-    "#171717", // neutral-900
+    "#ffffff", // white
+    "#f8fafc", // slate-50
+    "#f1f5f9", // slate-100
   ];
-  const linearGradients = [
-    "linear-gradient(to bottom right, #06b6d4, #10b981)", // cyan-500 to emerald-500
-    "linear-gradient(to bottom right, #ec4899, #6366f1)", // pink-500 to indigo-500
-    "linear-gradient(to bottom right, #f97316, #eab308)", // orange-500 to yellow-500
-  ];
-
-  const [backgroundGradient, setBackgroundGradient] = useState(linearGradients[0]);
-
-  useEffect(() => {
-    setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
-  }, [activeCard]);
+  // Keeping gradients array removed as right-side now renders content-provided backgrounds
 
   return (
-    <motion.div
-      animate={{
-        backgroundColor: backgroundColors[activeCard % backgroundColors.length],
-      }}
-      className="relative flex h-[30rem] justify-center space-x-10 overflow-y-auto rounded-md p-10"
-      ref={ref}>
-      <div className="div relative flex items-start px-4">
-        <div className="max-w-2xl">
-          {content.map((item, index) => (
-            <div key={item.title + index} className="my-20">
-              <motion.h2
-                initial={{
-                  opacity: 0,
-                }}
-                animate={{
-                  opacity: activeCard === index ? 1 : 0.3,
-                }}
-                className="text-2xl font-bold text-slate-100">
-                {item.title}
-              </motion.h2>
-              <motion.p
-                initial={{
-                  opacity: 0,
-                }}
-                animate={{
-                  opacity: activeCard === index ? 1 : 0.3,
-                }}
-                className="text-kg mt-10 max-w-sm text-slate-300">
-                {item.description}
-              </motion.p>
-            </div>
-          ))}
-          <div className="h-40" />
+    <div className="relative bg-white" ref={ref}>
+      <div className="flex max-w-7xl mx-auto relative">
+        {/* Left side - Scrollable content */}
+        <div className="w-1/2 pr-8 relative z-10">
+          <motion.div
+            animate={{
+              backgroundColor: backgroundColors[activeCard % backgroundColors.length],
+            }}
+            className="space-y-0">
+            {content.map((item, index) => (
+              <div
+                key={item.title + index}
+                ref={(el) => (sectionsRef.current[index] = el)}
+                className="min-h-screen flex items-center py-32 relative"
+              >
+                <div className="max-w-lg">
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.6 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
+                    <motion.h2
+                      animate={{
+                        opacity: activeCard === index ? 1 : 0.4,
+                        scale: activeCard === index ? 1 : 0.95,
+                      }}
+                      transition={{ duration: 0.5 }}
+                      className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                      {item.title}
+                    </motion.h2>
+                    <motion.p
+                      animate={{
+                        opacity: activeCard === index ? 1 : 0.4,
+                      }}
+                      transition={{ duration: 0.5 }}
+                      className="text-xl text-gray-600 leading-relaxed">
+                      {item.description}
+                    </motion.p>
+                    
+                    {/* Progress indicator */}
+                    <motion.div 
+                      className="mt-8 flex items-center space-x-2"
+                      animate={{
+                        opacity: activeCard === index ? 1 : 0.3,
+                      }}
+                    >
+                      <span className="text-sm font-medium text-gray-500">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <div className="flex space-x-1">
+                        {content.map((_, i) => (
+                          <motion.div
+                            key={i}
+                            className={`h-1 w-8 rounded-full ${
+                              i === activeCard ? 'bg-blue-600' : 'bg-gray-300'
+                            }`}
+                            animate={{
+                              backgroundColor: i === activeCard ? '#2563eb' : '#d1d5db',
+                              scale: i === activeCard ? 1.1 : 1,
+                            }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-sm font-medium text-gray-500">
+                        {String(content.length).padStart(2, '0')}
+                      </span>
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Right side - Scrolls with content; each card aligns with its section */}
+        <div className="w-1/2 pl-8">
+          <div className="space-y-0">
+            {content.map((item, index) => (
+              <div key={`image-${index}`} className="min-h-screen flex items-center justify-center py-32">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: false, amount: 0.5 }}
+                  animate={{
+                    opacity: activeCard === index ? 1 : 0.35,
+                    scale: activeCard === index ? 1 : 0.96,
+                  }}
+                  transition={{ duration: 0.35 }}
+                  className={cn(
+                    "h-96 w-96 overflow-hidden rounded-2xl shadow-2xl border border-gray-200",
+                    contentClassName
+                  )}
+                >
+                  {item.content}
+                </motion.div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <div
-        style={{ background: backgroundGradient }}
-        className={cn(
-          "sticky top-10 hidden h-60 w-80 overflow-hidden rounded-md bg-white lg:block",
-          contentClassName
-        )}>
-        {content[activeCard].content ?? null}
-      </div>
-    </motion.div>
+    </div>
   );
 };

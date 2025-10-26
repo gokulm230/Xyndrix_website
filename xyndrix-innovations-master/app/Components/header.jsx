@@ -115,7 +115,7 @@ export default function Header() {
   return (
     <header className="font-sans">
       {/* Navigation Bar */}
-      <nav className="flex items-center justify-center p-4 lg:px-16 shadow-sm bg-white sticky top-0 z-50">
+      <nav className="flex items-center justify-center p-4 lg:px-16 shadow-sm bg-white sticky top-0 z-[60]">
         <div className="flex items-center mr-8">
           <Link href="/Home" className="flex items-center">
             <Image
@@ -160,7 +160,7 @@ export default function Header() {
             {/* Company Mega Menu */}
             {companyDropdownOpen && (
               <div
-                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[960px] bg-white shadow-xl rounded-2xl z-50 border border-gray-200"
+                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[960px] bg-white shadow-xl rounded-2xl z-[60] border border-gray-200"
                 onMouseEnter={() => clearCloseTimeout("company")}
                 onMouseLeave={() => closeDropdownDelayed("company")}
               >
@@ -278,7 +278,7 @@ export default function Header() {
             {/* Products Mega Menu */}
             {productsDropdownOpen && (
               <div
-                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[960px] bg-white shadow-xl rounded-2xl z-50 border border-gray-200"
+                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[960px] bg-white shadow-xl rounded-2xl z-[60] border border-gray-200"
                 onMouseEnter={() => clearCloseTimeout("products")}
                 onMouseLeave={() => closeDropdownDelayed("products")}
               >
@@ -387,7 +387,7 @@ export default function Header() {
             {/* services Mega Menu */}
             {servicesDropdownOpen && (
               <div
-                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[960px] bg-white shadow-xl rounded-2xl z-50 border border-gray-200"
+                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[960px] bg-white shadow-xl rounded-2xl z-[60] border border-gray-200"
                 onMouseEnter={() => clearCloseTimeout("services")}
                 onMouseLeave={() => closeDropdownDelayed("services")}
               >
@@ -569,7 +569,7 @@ export default function Header() {
             onMouseEnter={() => openDropdown("careers")}
             onMouseLeave={() => closeDropdownDelayed("careers")}
           >
-            <button className="flex items-center font-bold text-gray-700 hover:text-blue-500 transition-colors">
+            {/* <button className="flex items-center font-bold text-gray-700 hover:text-blue-500 transition-colors">
               Careers
               <svg
                 className={`ml-1 w-4 h-4 transition-transform ${
@@ -586,12 +586,12 @@ export default function Header() {
                   d="M19 9l-7 7-7-7"
                 />
               </svg>
-            </button>
+            </button> */}
 
             {/* Careers Mega Menu */}
             {careersDropdownOpen && (
               <div
-                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[960px] bg-white shadow-xl rounded-2xl z-50 border border-gray-200"
+                className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[960px] bg-white shadow-xl rounded-2xl z-[60] border border-gray-200"
                 onMouseEnter={() => clearCloseTimeout("careers")}
                 onMouseLeave={() => closeDropdownDelayed("careers")}
               >
@@ -668,7 +668,7 @@ export default function Header() {
 
       {/* Mobile Navigation Menu - Keep using clicks for mobile */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg py-4 px-6 absolute top-16 left-0 right-0 z-50">
+        <div className="md:hidden bg-white shadow-lg py-4 px-6 absolute top-16 left-0 right-0 z-[60]">
           <div className="flex flex-col space-y-4">
             {/* Mobile Company Dropdown */}
             <div className="py-2">
