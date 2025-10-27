@@ -115,7 +115,7 @@ export default function Header() {
   return (
     <header className="font-sans">
       {/* Navigation Bar */}
-      <nav className="flex items-center justify-center p-4 lg:px-16 shadow-sm bg-white sticky top-0 z-[60]">
+      <nav className="flex items-center justify-center p-4 lg:px-16 shadow-sm bg-gray-800 sticky top-0 z-70">
         <div className="flex items-center mr-8">
           <Link href="/Home" className="flex items-center">
             <Image

@@ -187,7 +187,7 @@ export function WhyChooseXyndrixSticky() {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full py-20 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+    <div ref={containerRef} className="w-full py-20  from-gray-50 to-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div ref={headerRef} className="text-center mb-16">
