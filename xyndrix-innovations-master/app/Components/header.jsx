@@ -635,7 +635,7 @@ export default function Header() {
         <div className="flex  mx-20 space-x-4">
           <Link
             href="/contact"
-            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300 font-bold md:block hidden"
+            className="bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-900 transition duration-300 font-bold md:block hidden"
           >
             Let's Get Started!
           </Link>
@@ -857,7 +857,7 @@ export default function Header() {
             <div className="pt-2">
               <Link
                 href="/contact"
-                className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-300 inline-block font-bold"
+                className="bg-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-900 transition duration-300 inline-block font-bold"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Let's Get Started!
