@@ -117,9 +117,9 @@ const HowWeWork = () => {
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-20">
-          <span className="inline-block py-1 px-5 bg-blue-600/20 text-blue-300 font-semibold rounded-full mb-5 border border-blue-500/30">
+          {/* <span className="inline-block py-1 px-5 bg-blue-600/20 text-blue-300 font-semibold rounded-full mb-5 border border-blue-500/30">
             How We Work
-          </span>
+          </span> */}
           <h2
             ref={headingRef}
             className="text-4xl md:text-5xl font-bold text-white mb-6"

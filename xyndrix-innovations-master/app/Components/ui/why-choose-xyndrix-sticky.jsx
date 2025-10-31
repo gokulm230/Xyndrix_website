@@ -191,9 +191,9 @@ export function WhyChooseXyndrixSticky() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div ref={headerRef} className="text-center mb-16">
-          <span className="inline-block py-2 px-4 bg-blue-100 text-blue-800 font-semibold rounded-full mb-4 border border-blue-200">
+          {/* <span className="inline-block py-2 px-4 bg-blue-100 text-blue-800 font-semibold rounded-full mb-4 border border-blue-200">
             Our Advantage
-          </span>
+          </span> */}
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Why Us
           </h2>

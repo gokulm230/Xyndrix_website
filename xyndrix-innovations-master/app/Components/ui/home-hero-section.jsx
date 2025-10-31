@@ -23,7 +23,7 @@ const Hero = () => {
             className="flex flex-col items-center px-4 max-w-4xl mx-auto text-center w-full"
           >
             {/* Badge */}
-            <div className="inline-flex items-center py-2 px-4 bg-white/10 backdrop-blur-sm text-blue-300 font-semibold rounded-full mb-6 border border-white/20 shadow-sm">
+            {/* <div className="inline-flex items-center py-2 px-4 bg-white/10 backdrop-blur-sm text-blue-300 font-semibold rounded-full mb-6 border border-white/20 shadow-sm">
               <svg
                 className="w-4 h-4 mr-2 text-blue-300"
                 viewBox="0 0 24 24"
@@ -39,7 +39,7 @@ const Hero = () => {
                 />
               </svg>
               Trusted by Industry Leaders
-            </div>
+            </div> */}
 
             {/* Main Title with FlipWords */}
             <div className="mt-8 text-center mb-8 leading-tight flex flex-col items-center gap-4 w-full">

@@ -316,9 +316,9 @@ const BlogsSection = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div ref={headerRef} className="text-center mb-16">
-            <span className="inline-block py-2 px-4 bg-blue-50 text-blue-600 font-semibold rounded-full mb-4 border border-blue-200">
+            {/* <span className="inline-block py-2 px-4 bg-blue-50 text-blue-600 font-semibold rounded-full mb-4 border border-blue-200">
               Latest Insights
-            </span>
+            </span> */}
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               From Our <span className="text-blue-600">Blog</span>
             </h2>

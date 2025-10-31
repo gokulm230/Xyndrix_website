@@ -115,7 +115,7 @@ export default function Header() {
   return (
     <header className="font-sans">
       {/* Navigation Bar */}
-      <nav className="flex items-center justify-center p-4 lg:px-16 shadow-sm bg-gray-800 sticky top-0 z-70">
+      <nav className="flex items-center justify-center p-4 lg:px-16 shadow-sm bg-[#0a085c] sticky top-0 z-70">
         <div className="flex items-center mr-8">
           <Link href="/Home" className="flex items-center">
             <Image
@@ -126,7 +126,7 @@ export default function Header() {
               className="h-7 w-auto"
               priority
             />
-            <h1 className="ml-1 text-3xl font-bold text-blue-500">XYNDRIX</h1>
+            <h1 className="ml-1 text-3xl font-bold text-white ">XYNDRIX</h1>
           </Link>
         </div>
 
@@ -138,7 +138,7 @@ export default function Header() {
             onMouseEnter={() => openDropdown("company")}
             onMouseLeave={() => closeDropdownDelayed("company")}
           >
-            <button className="flex items-center font-bold text-gray-700 hover:text-blue-500 transition-colors">
+            <button className="flex items-center font-bold text-gray-300 hover:text-blue-500 transition-colors">
               Company
               <svg
                 className={`ml-1 w-4 h-4 transition-transform ${
@@ -167,7 +167,7 @@ export default function Header() {
                 <div className="p-6">
                   <div className="grid grid-cols-3 gap-6">
                     <div>
-                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">
+                      <h4 className="text-xs font-bold uppercase text-gray-300 tracking-wider mb-3">
                         Company
                       </h4>
                       <ul className="space-y-2">
@@ -198,7 +198,7 @@ export default function Header() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">
+                      <h4 className="text-xs font-bold uppercase text-gray-300 tracking-wider mb-3">
                         Resources
                       </h4>
                       <ul className="space-y-2">
@@ -220,7 +220,7 @@ export default function Header() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">
+                      <h4 className="text-xs font-bold uppercase text-gray-300 tracking-wider mb-3">
                         Company News
                       </h4>
                       <p className="text-sm text-gray-600">
@@ -239,7 +239,7 @@ export default function Header() {
                         <p className="text-sm font-bold text-gray-800">
                           Careers at Xyndrix
                         </p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-gray-300">
                           We're hiring — see open roles and benefits.
                         </p>
                       </div>
@@ -256,7 +256,7 @@ export default function Header() {
             onMouseEnter={() => openDropdown("products")}
             onMouseLeave={() => closeDropdownDelayed("products")}
           >
-            <button className="flex items-center font-bold text-gray-700 hover:text-blue-500 transition-colors">
+            <button className="flex items-center font-bold text-gray-300 hover:text-blue-500 transition-colors">
               Products
               <svg
                 className={`ml-1 w-4 h-4 transition-transform ${
@@ -285,7 +285,7 @@ export default function Header() {
                 <div className="p-6">
                   <div className="grid grid-cols-3 gap-6">
                     <div>
-                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">
+                      <h4 className="text-xs font-bold uppercase text-gray-300 tracking-wider mb-3">
                         Products
                       </h4>
                       <ul className="space-y-2">
@@ -308,7 +308,7 @@ export default function Header() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">
+                      <h4 className="text-xs font-bold uppercase text-gray-300 tracking-wider mb-3">
                         Integrations
                       </h4>
                       <ul className="space-y-2">
@@ -330,7 +330,7 @@ export default function Header() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">
+                      <h4 className="text-xs font-bold uppercase text-gray-300 tracking-wider mb-3">
                         Developer
                       </h4>
                       <p className="text-sm text-gray-600">
@@ -348,7 +348,7 @@ export default function Header() {
                         <p className="text-sm font-bold text-gray-800">
                           Try our SDK
                         </p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-gray-300">
                           Start building integrations in minutes.
                         </p>
                       </div>
@@ -365,7 +365,7 @@ export default function Header() {
             onMouseEnter={() => openDropdown("services")}
             onMouseLeave={() => closeDropdownDelayed("services")}
           >
-            <button className="flex items-center font-bold text-gray-700 hover:text-blue-500 transition-colors">
+            <button className="flex items-center font-bold text-gray-300 hover:text-blue-500 transition-colors">
               Services
               <svg
                 className={`ml-1 w-4 h-4 transition-transform ${
@@ -394,7 +394,7 @@ export default function Header() {
                 <div className="p-6">
                   <div className="grid grid-cols-4 gap-6">
                     <div>
-                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">
+                      <h4 className="text-xs font-bold uppercase text-gray-300 tracking-wider mb-3">
                         By use case
                       </h4>
                       <ul className="space-y-2 text-sm">
@@ -433,7 +433,7 @@ export default function Header() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">
+                      <h4 className="text-xs font-bold uppercase text-gray-300 tracking-wider mb-3">
                         By team
                       </h4>
                       <ul className="space-y-2 text-sm">
@@ -464,7 +464,7 @@ export default function Header() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">
+                      <h4 className="text-xs font-bold uppercase text-gray-300 tracking-wider mb-3">
                         By size
                       </h4>
                       <ul className="space-y-2 text-sm">
@@ -503,7 +503,7 @@ export default function Header() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">
+                      <h4 className="text-xs font-bold uppercase text-gray-300 tracking-wider mb-3">
                         By industry
                       </h4>
                       <ul className="space-y-2 text-sm">
@@ -552,7 +552,7 @@ export default function Header() {
                       />
                       <div>
                         <p className="text-sm font-bold text-gray-800">Rovo</p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-gray-300">
                           AI-powered apps — driven by your team's knowledge.
                         </p>
                       </div>
@@ -598,7 +598,7 @@ export default function Header() {
                 <div className="p-6">
                   <div className="grid grid-cols-2 gap-6">
                     <div>
-                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">
+                      <h4 className="text-xs font-bold uppercase text-gray-300 tracking-wider mb-3">
                         Open roles
                       </h4>
                       <ul className="space-y-2">
@@ -618,7 +618,7 @@ export default function Header() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold uppercase text-gray-500 tracking-wider mb-3">
+                      <h4 className="text-xs font-bold uppercase text-gray-300 tracking-wider mb-3">
                         Life at Xyndrix
                       </h4>
                       <p className="text-sm text-gray-600">
@@ -646,7 +646,7 @@ export default function Header() {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-gray-700 "
+              className="h-6 w-6 text-gray-300 "
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -673,7 +673,7 @@ export default function Header() {
             {/* Mobile Company Dropdown */}
             <div className="py-2">
               <button
-                className="flex items-center justify-between w-full font-bold text-gray-700 hover:text-blue-500"
+                className="flex items-center justify-between w-full font-bold text-gray-300 hover:text-blue-500"
                 onClick={() => toggleMobileDropdown("company")}
               >
                 <span>Company</span>
@@ -724,7 +724,7 @@ export default function Header() {
             {/* Mobile Products Dropdown */}
             <div className="py-2">
               <button
-                className="flex items-center justify-between w-full font-bold text-gray-700 hover:text-blue-500"
+                className="flex items-center justify-between w-full font-bold text-gray-300 hover:text-blue-500"
                 onClick={() => toggleMobileDropdown("products")}
               >
                 <span>Products</span>
@@ -768,7 +768,7 @@ export default function Header() {
             {/* Mobile services Dropdown */}
             <div className="py-2">
               <button
-                className="flex items-center justify-between w-full font-bold text-gray-700 hover:text-blue-500"
+                className="flex items-center justify-between w-full font-bold text-gray-300 hover:text-blue-500"
                 onClick={() => toggleMobileDropdown("services")}
               >
                 <span>services</span>
@@ -812,7 +812,7 @@ export default function Header() {
             {/* Mobile Careers Dropdown */}
             <div className="py-2">
               <button
-                className="flex items-center justify-between w-full font-bold text-gray-700 hover:text-blue-500"
+                className="flex items-center justify-between w-full font-bold text-gray-300 hover:text-blue-500"
                 onClick={() => toggleMobileDropdown("careers")}
               >
                 <span>Careers</span>
@@ -848,7 +848,7 @@ export default function Header() {
 
             <Link
               href="/why-choose-xyndrix"
-              className="font-bold py-2 text-gray-700 hover:text-blue-500"
+              className="font-bold py-2 text-gray-300 hover:text-blue-500"
               onClick={() => setMobileMenuOpen(false)}
             >
               Why Choose Xyndrix
