@@ -133,16 +133,19 @@ const HowWeWork = () => {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
           {steps.map((step, index) => (
-            <CardSpotlight
+            <div 
               key={step.id}
-              ref={(el) => (cardsRef.current[index] = el)}
-              className="h-auto w-full bg-neutral-900 border-neutral-700"
-              radius={300}
-              color="#1e40af"
+              className="transform transition-all duration-500 ease-out hover:scale-110 hover:z-20 relative"
             >
-              <div className="relative z-20">
+              <CardSpotlight
+                ref={(el) => (cardsRef.current[index] = el)}
+                className="h-full w-full bg-neutral-900 border-neutral-700 hover:shadow-2xl hover:shadow-blue-600/20 min-h-[480px]"
+                radius={300}
+                color="#1e40af"
+              >
+              <div className="relative z-20 hover:transition-transform duration-300 hover:ease-in-out h-full flex flex-col">
                 {/* Step Number */}
                 <div className="flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full mb-4">
                   <span className="text-white font-bold text-lg">{step.id}</span>
@@ -169,6 +172,7 @@ const HowWeWork = () => {
                 </div>
               </div>
             </CardSpotlight>
+            </div>
           ))}
         </div>
       </div>
