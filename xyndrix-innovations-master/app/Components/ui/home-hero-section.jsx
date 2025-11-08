@@ -22,25 +22,7 @@ const Hero = () => {
             }}
             className="flex flex-col items-center px-4 max-w-4xl mx-auto text-center w-full"
           >
-            {/* Badge */}
-            {/* <div className="inline-flex items-center py-2 px-4 bg-white/10 backdrop-blur-sm text-blue-300 font-semibold rounded-full mb-6 border border-white/20 shadow-sm">
-              <svg
-                className="w-4 h-4 mr-2 text-blue-300"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              Trusted by Industry Leaders
-            </div> */}
-
+        
             {/* Main Title with FlipWords */}
             <div className="mt-8 text-center mb-8 leading-tight flex flex-col items-center gap-4 w-full">
               {/* Dynamic Title with FlipWords */}
@@ -69,10 +51,10 @@ const Hero = () => {
                   </span>
                 </button>
               </Link>
-              <Link href="/We-do" className="relative group w-full sm:w-auto sm:flex-1">
+              <Link href="/About" className="relative group w-full sm:w-auto sm:flex-1">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-white/20 to-white/30 rounded-lg blur opacity-30 group-hover:opacity-80 transition duration-300"></div>
                 <button className="relative bg-white/10 backdrop-blur-sm text-white font-semibold py-4 px-6 sm:px-8 rounded-lg border border-white/20 transition duration-300 group-hover:scale-105 hover:bg-white/20 text-base sm:text-lg w-full">
-                  View Case Studies
+                  About Us
                 </button>
               </Link>
             </div>

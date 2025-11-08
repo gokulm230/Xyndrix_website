@@ -517,7 +517,7 @@ export default function ContactPage() {
                 </h3>
                 <div className="space-y-3">
                   <a
-                    href="https://www.linkedin.com/company/xyndrix-innovations/"
+                    href="https://www.linkedin.com/company/xyndrix/"
                     target="_blank"
                     rel="noreferrer"
                     className="social-link flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group border border-gray-100 hover:border-blue-200"
