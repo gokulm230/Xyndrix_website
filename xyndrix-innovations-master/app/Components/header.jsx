@@ -103,6 +103,11 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
+          {/* About Us - Standalone Link */}
+          <Link href="/About" className="font-semibold text-white/90 hover:text-white transition-colors">
+            About Us
+          </Link>
+
           {/* Company Dropdown */}
           <div
             ref={companyRef}
@@ -133,7 +138,7 @@ export default function Header() {
               >
                 <div className="p-3">
                   <div className="space-y-2">
-                    <Link
+                    {/* <Link
                       href="/About"
                       className="flex items-center gap-3 text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-3 rounded-lg group"
                     >
@@ -141,7 +146,7 @@ export default function Header() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       <span className="font-medium">About Us</span>
-                    </Link>
+                    </Link> */}
                     <Link
                       href="/Team"
                       className="flex items-center gap-3 text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-3 rounded-lg group"
@@ -167,13 +172,13 @@ export default function Header() {
           </div>
 
           {/* Products Dropdown */}
-          <div
+          {/* <div
             ref={productsRef}
             onMouseEnter={() => openDropdown("products")}
             onMouseLeave={() => closeDropdownDelayed("products")}
-            className="relative"
-          >
-            <button className="flex items-center gap-1 font-semibold text-white/90 hover:text-white transition-colors">
+            className="relative"a
+          > */}
+            {/* <button className="flex items-center gap-1 font-semibold text-white/90 hover:text-white transition-colors">
               Products
               <svg
                 className={`w-4 h-4 transition-transform duration-200 ${
@@ -185,10 +190,10 @@ export default function Header() {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
-            </button>
+            </button> */}
 
             {/* Products Dropdown Menu */}
-            {productsDropdownOpen && (
+            {/* {productsDropdownOpen && (
               <div
                 className="fixed top-20 left-1/2 transform -translate-x-1/2 w-80 bg-gradient-to-br from-[#0a085c] to-[#1a1575] shadow-2xl rounded-xl z-[99999] border border-white/10 backdrop-blur-md"
                 onMouseEnter={() => clearCloseTimeout("products")}
@@ -233,8 +238,8 @@ export default function Header() {
                   </div>
                 </div>
               </div>
-            )}
-          </div>
+            )} */}
+          {/* </div> */}
 
           {/* Services Dropdown */}
           <div
@@ -300,7 +305,7 @@ export default function Header() {
                       </div>
                       <span className="font-medium">Internships</span>
                     </Link>
-                    <Link
+                    {/* <Link
                       href="/services/courses"
                       className="flex items-center gap-3 text-white/80 hover:text-white hover:bg-white/10 transition-all duration-200 px-4 py-3 rounded-lg group"
                     >
@@ -310,7 +315,7 @@ export default function Header() {
                         </svg>
                       </div>
                       <span className="font-medium">Courses</span>
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
               </div>

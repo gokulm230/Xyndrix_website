@@ -187,7 +187,7 @@ export default function ContactPage() {
     }));
   };
 
-  // Enhanced form submission with animation
+  // Enhanced form submission with WhatsApp integration
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -204,7 +204,31 @@ export default function ContactPage() {
     });
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Validate required fields
+      if (!formData.name || !formData.email || !formData.message) {
+        throw new Error("Please fill in all required fields.");
+      }
+
+      // Format message for WhatsApp
+      const whatsappMessage = `*New Contact Form Submission*
+      
+*Name:* ${formData.name}
+*Email:* ${formData.email}
+*Phone:* ${formData.phone || 'Not provided'}
+
+*Message:*
+${formData.message}
+
+---
+Sent from Xyndrix Website Contact Form`;
+
+      // Create WhatsApp URL
+      const whatsappNumber = "919488345831"; // Your WhatsApp number with country code
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+      // Wait for animation
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Success animation
       gsap.to(".form-container", {
@@ -218,12 +242,17 @@ export default function ContactPage() {
             { scale: 0.8, opacity: 0 },
             { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" }
           );
+          
+          // Open WhatsApp after a short delay
+          setTimeout(() => {
+            window.open(whatsappURL, '_blank');
+          }, 1500);
         },
       });
 
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (err) {
-      setError("Something went wrong. Please try again.");
+      setError(err.message || "Something went wrong. Please try again.");
 
       // Error shake animation
       gsap.to(".form-container", {
@@ -297,11 +326,10 @@ export default function ContactPage() {
                       </svg>
                     </div>
                     <h3 className="text-lg font-semibold text-green-800 mb-2">
-                      Message Sent Successfully
+                      Redirecting to WhatsApp
                     </h3>
                     <p className="text-green-700 mb-4">
-                      Thank you for contacting us. We'll respond within 24
-                      hours.
+                      Thank you for contacting us! You'll be redirected to WhatsApp to send your message directly to our team.
                     </p>
                     <button
                       className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded-md transition duration-200"
@@ -397,36 +425,10 @@ export default function ContactPage() {
 
                     <button
                       type="submit"
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-md transition duration-200 flex justify-center items-center"
+                      className="w-full bg-blue-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-md transition duration-200 flex justify-center items-center"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? (
-                        <span className="inline-flex items-center">
-                          <svg
-                            className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                          >
-                            <circle
-                              className="opacity-25"
-                              cx="12"
-                              cy="12"
-                              r="10"
-                              stroke="currentColor"
-                              strokeWidth="4"
-                            ></circle>
-                            <path
-                              className="opacity-75"
-                              fill="currentColor"
-                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                            ></path>
-                          </svg>
-                          Sending...
-                        </span>
-                      ) : (
-                        "Send Message"
-                      )}
+                      Send Message
                     </button>
                   </form>
                 )}
@@ -557,7 +559,7 @@ export default function ContactPage() {
                   </a>
 
                   <a
-                    href="https://www.instagram.com/xyndrix_innovations/"
+                    href="https://www.instagram.com/_xyndrix_/"
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group border border-gray-100 hover:border-purple-200"
